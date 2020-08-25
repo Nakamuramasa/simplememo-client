@@ -4,14 +4,16 @@
             <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
                 <div class="card mt-3">
                     <div class="card-body text-center">
-                        <h2 class="h3 card-title text-center mt-2">ログイン</h2>
+                        <h2 class="h3 card-title text-center mt-2">認証メールの再送信</h2>
                         <div class="card-text">
 
                             <form @submit.prevent="submit">
                                 <alert-error v-if="form.errors.has('message')" :form="form">
                                     {{ form.errors.get('message') }}
-                                    <nuxt-link to="/verification/resend">認証メールの再送信</nuxt-link>
                                 </alert-error>
+                                <alert-success :form="form">
+                                    アカウント認証用メールを送信しました。
+                                </alert-success>
                                 <div class="md-form">
                                     <input
                                         type="text"
@@ -23,17 +25,6 @@
                                     />
                                     <has-error :form="form" field="email"></has-error>
                                 </div>
-                                <div class="md-form">
-                                    <input
-                                        type="password"
-                                        v-model="form.password"
-                                        name="password"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('password') }"
-                                        placeholder="パスワード"
-                                    />
-                                    <has-error :form="form" field="password"></has-error>
-                                </div>
                                 <button
                                     type="submit"
                                     :disabled="form.busy"
@@ -42,12 +33,12 @@
                                     <span v-if="form.busy">
                                         <i class="fas fa-spinner fa-spin"></i>
                                     </span>
-                                    ログイン
+                                    送信
                                 </button>
                             </form>
 
                             <div class="mt-0">
-                                <nuxt-link to="/register" class="card-text">ユーザー登録はこちら</nuxt-link>
+                                <nuxt-link to="/login" class="card-text">ログイン画面へ戻る</nuxt-link>
                             </div>
                         </div>
                     </div>
@@ -62,21 +53,16 @@ export default {
     data(){
         return {
             form: this.$vform({
-                email: '',
-                password: ''
+                email: ''
             })
         }
     },
     methods:{
         submit(){
-            this.$auth
-            .loginWith('local', {
-                data: this.form
-            }).then(res => {
-                console.log(res)
-            }).catch(e => {
-                this.form.errors.set(e.response.data.errors);
-            });
+            this.form
+            .post(`/verification/resend`)
+            .then(res => this.form.reset())
+            .catch(e => console.log(e))
         }
     }
 };
