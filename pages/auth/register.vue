@@ -7,28 +7,73 @@
                         <h2 class="h3 card-title text-center mt-2">ユーザー登録</h2>
                         <div class="card-text">
 
-                            <form>
+                            <form @submit.prevent="submit">
+                                <alert-success :form="form">
+                                    アカウント認証用メールを送信しました。
+                                </alert-success>
                                 <div class="md-form">
-                                    <label for="name">ユーザー名</label>
-                                    <input class="form-control" type="text" id="name" name="name">
+                                    <input
+                                        type="text"
+                                        v-model="form.username"
+                                        name="username"
+                                        class="form-control"
+                                        :class="{ 'is-invalid': form.errors.has('username') }"
+                                        placeholder="ユーザー名"
+                                    />
+                                    <has-error :form="form" field="username"></has-error>
                                 </div>
                                 <div class="md-form">
-                                    <label for="name">フルネーム</label>
-                                    <input class="form-control" type="text" id="username" name="username">
+                                    <input
+                                        type="text"
+                                        v-model="form.name"
+                                        name="name"
+                                        class="form-control"
+                                        :class="{ 'is-invalid': form.errors.has('name') }"
+                                        placeholder="フルネーム"
+                                    />
+                                    <has-error :form="form" field="name"></has-error>
                                 </div>
                                 <div class="md-form">
-                                    <label for="email">メールアドレス</label>
-                                    <input class="form-control" type="text" id="email" name="email">
+                                    <input
+                                        type="email"
+                                        v-model="form.email"
+                                        name="email"
+                                        class="form-control"
+                                        :class="{ 'is-invalid': form.errors.has('email') }"
+                                        placeholder="メールアドレス"
+                                    />
+                                    <has-error :form="form" field="email"></has-error>
                                 </div>
                                 <div class="md-form">
-                                    <label for="password">パスワード</label>
-                                    <input class="form-control" type="password" id="password" name="password">
+                                    <input
+                                        type="password"
+                                        v-model="form.password"
+                                        name="password"
+                                        class="form-control"
+                                        :class="{ 'is-invalid': form.errors.has('password') }"
+                                        placeholder="パスワード"
+                                    />
+                                    <has-error :form="form" field="password"></has-error>
                                 </div>
                                 <div class="md-form">
-                                    <label for="password_confirmation">パスワード(確認)</label>
-                                    <input class="form-control" type="password" id="password_confirmation" name="password_confirmation">
+                                    <input
+                                        type="password"
+                                        v-model="form.password_confirmation"
+                                        name="password_confirmation"
+                                        class="form-control"
+                                        placeholder="パスワード(確認)"
+                                    />
                                 </div>
-                                <button class="btn btn-block blue-gradient mt-2 mb-2" type="submit">ユーザー登録</button>
+                                <button
+                                    type="submit"
+                                    :disabled="form.busy"
+                                    class="btn btn-block blue-gradient mt-2 mb-2"
+                                >
+                                    <span v-if="form.busy">
+                                        <i class="fas fa-spinner fa-spin"></i>
+                                    </span>
+                                    ユーザー登録
+                                </button>
                             </form>
 
                             <div class="mt-0">
@@ -43,5 +88,27 @@
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return {
+            form: this.$vform({
+                usename: '',
+                name: '',
+                email: '',
+                password: '',
+                password_confirmation: ''
+            })
+        }
+    },
+    methods: {
+        submit(){
+            this.form.post(`/register`)
+            .then(res => {
+                this.form.reset();
+            }).catch(error => {
+                console.log(error);
+            });
+        }
+    }
+};
 </script>
