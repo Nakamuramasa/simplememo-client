@@ -4,19 +4,20 @@
             <div class="mx-auto col col-12 col-sm-11 col-md-9 col-lg-7 col-xl-6">
                 <div class="card mt-3">
                     <div class="card-body text-center">
-                        <h2 class="h3 card-title text-center mt-2">ログイン</h2>
+                        <h2 class="h3 card-title text-center mt-2">パスワードリセット</h2>
                         <div class="card-text">
 
                             <form @submit.prevent="submit">
-                                <alert-error v-if="form.errors.has('message')" :form="form">
-                                    {{ form.errors.get('message') }}
-                                    <nuxt-link to="/verification/resend">認証メールの再送信</nuxt-link>
-                                </alert-error>
+                                <alert-success :form="form">
+                                    {{ status }}
+                                    <nuxt-link to="/login">ログイン画面へ</nuxt-link>
+                                </alert-success>
                                 <div class="md-form">
                                     <input
                                         type="text"
                                         v-model="form.email"
                                         name="email"
+                                        readonly
                                         class="form-control"
                                         :class="{ 'is-invalid': form.errors.has('email') }"
                                         placeholder="メールアドレス"
@@ -30,9 +31,18 @@
                                         name="password"
                                         class="form-control"
                                         :class="{ 'is-invalid': form.errors.has('password') }"
-                                        placeholder="パスワード"
+                                        placeholder="新しいパスワード"
                                     />
-                                    <has-error :form="form" field="password"></has-error>
+                                    <has-error :form="form" field="email"></has-error>
+                                </div>
+                                <div class="md-form">
+                                    <input
+                                        type="password"
+                                        v-model="form.password_confirmation"
+                                        name="password_confirmation"
+                                        class="form-control"
+                                        placeholder="新しいパスワード(確認)"
+                                    />
                                 </div>
                                 <button
                                     type="submit"
@@ -42,16 +52,10 @@
                                     <span v-if="form.busy">
                                         <i class="fas fa-spinner fa-spin"></i>
                                     </span>
-                                    ログイン
+                                    パスワードリセット
                                 </button>
                             </form>
 
-                            <div class="mt-0">
-                                <nuxt-link to="/register" class="card-text">ユーザー登録はこちら</nuxt-link>
-                            </div>
-                            <div class="mt-2">
-                                <nuxt-link to="/password/email" class="card-text">パスワードを忘れた</nuxt-link>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -64,21 +68,28 @@
 export default {
     data(){
         return {
+            status: '',
             form: this.$vform({
                 email: '',
-                password: ''
+                password: '',
+                password_confirmation: '',
+                token: ''
             })
-        }
+        };
     },
-    methods:{
+    created(){
+        this.form.email = this.$route.query.email
+        this.form.token = this.$route.params.token
+    },
+    methods: {
         submit(){
-            this.$auth
-            .loginWith('local', {
-                data: this.form
-            }).then(res => {
-                console.log(res)
-            }).catch(e => {
-                this.form.errors.set(e.response.data.errors);
+            this.form.post('/password/reset')
+            .then(res => {
+                this.status = res.data.status;
+                this.form.reset();
+            })
+            .catch(e => {
+                console.log(e);
             });
         }
     }
