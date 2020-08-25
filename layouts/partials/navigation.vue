@@ -23,7 +23,7 @@
                             マイページ
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button form="logout-button" class="dropdown-item" type="submit">
+                        <button form="logout-button" class="dropdown-item" type="button" @click.prevent="logout">
                             ログアウト
                         </button>
                     </div>
@@ -34,5 +34,11 @@
 </template>
 
 <script>
-export default {};
+export default {
+    methods: {
+        logout(){
+            this.$auth.logout();
+        }
+    }
+};
 </script>
