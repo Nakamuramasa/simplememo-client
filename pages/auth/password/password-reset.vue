@@ -13,36 +13,31 @@
                                     <nuxt-link to="/login">ログイン画面へ</nuxt-link>
                                 </alert-success>
                                 <div class="md-form">
-                                    <input
-                                        type="text"
+                                    <base-input
+                                        :form="form"
+                                        :readonly="true"
+                                        field="email"
                                         v-model="form.email"
-                                        name="email"
-                                        readonly
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('email') }"
                                         placeholder="メールアドレス"
-                                    />
-                                    <has-error :form="form" field="email"></has-error>
+                                    ></base-input>
                                 </div>
                                 <div class="md-form">
-                                    <input
-                                        type="password"
+                                    <base-input
+                                        :form="form"
+                                        field="password"
+                                        inputType="password"
                                         v-model="form.password"
-                                        name="password"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('password') }"
                                         placeholder="新しいパスワード"
-                                    />
-                                    <has-error :form="form" field="email"></has-error>
+                                    ></base-input>
                                 </div>
                                 <div class="md-form">
-                                    <input
-                                        type="password"
+                                    <base-input
+                                        :form="form"
+                                        field="password_confirmation"
+                                        inputType="password"
                                         v-model="form.password_confirmation"
-                                        name="password_confirmation"
-                                        class="form-control"
                                         placeholder="新しいパスワード(確認)"
-                                    />
+                                    ></base-input>
                                 </div>
                                 <base-button :loading="form.busy">
                                     パスワードリセット

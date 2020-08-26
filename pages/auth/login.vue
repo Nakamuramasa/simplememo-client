@@ -13,26 +13,21 @@
                                     <nuxt-link to="/verification/resend">認証メールの再送信</nuxt-link>
                                 </alert-error>
                                 <div class="md-form">
-                                    <input
-                                        type="text"
+                                    <base-input
+                                        :form="form"
+                                        field="email"
                                         v-model="form.email"
-                                        name="email"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('email') }"
                                         placeholder="メールアドレス"
-                                    />
-                                    <has-error :form="form" field="email"></has-error>
+                                    ></base-input>
                                 </div>
                                 <div class="md-form">
-                                    <input
-                                        type="password"
+                                    <base-input
+                                        :form="form"
+                                        field="password"
+                                        inputType="password"
                                         v-model="form.password"
-                                        name="password"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('password') }"
                                         placeholder="パスワード"
-                                    />
-                                    <has-error :form="form" field="password"></has-error>
+                                    ></base-input>
                                 </div>
                                 <base-button :loading="form.busy">
                                     ログイン

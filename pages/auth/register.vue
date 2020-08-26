@@ -12,57 +12,47 @@
                                     アカウント認証用メールを送信しました。
                                 </alert-success>
                                 <div class="md-form">
-                                    <input
-                                        type="text"
+                                    <base-input
+                                        :form="form"
+                                        field="username"
                                         v-model="form.username"
-                                        name="username"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('username') }"
                                         placeholder="ユーザー名"
-                                    />
-                                    <has-error :form="form" field="username"></has-error>
+                                    ></base-input>
                                 </div>
                                 <div class="md-form">
-                                    <input
-                                        type="text"
+                                    <base-input
+                                        :form="form"
+                                        field="name"
                                         v-model="form.name"
-                                        name="name"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('name') }"
                                         placeholder="フルネーム"
-                                    />
-                                    <has-error :form="form" field="name"></has-error>
+                                    ></base-input>
                                 </div>
                                 <div class="md-form">
-                                    <input
-                                        type="email"
+                                    <base-input
+                                        :form="form"
+                                        field="email"
+                                        inputType="email"
                                         v-model="form.email"
-                                        name="email"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('email') }"
                                         placeholder="メールアドレス"
-                                    />
-                                    <has-error :form="form" field="email"></has-error>
+                                    ></base-input>
                                 </div>
                                 <div class="md-form">
-                                    <input
-                                        type="password"
+                                    <base-input
+                                        :form="form"
+                                        field="password"
+                                        inputType="password"
                                         v-model="form.password"
-                                        name="password"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('password') }"
                                         placeholder="パスワード"
-                                    />
-                                    <has-error :form="form" field="password"></has-error>
+                                    ></base-input>
                                 </div>
                                 <div class="md-form">
-                                    <input
-                                        type="password"
+                                    <base-input
+                                        :form="form"
+                                        field="password_confirmation"
+                                        inputType="password"
                                         v-model="form.password_confirmation"
-                                        name="password_confirmation"
-                                        class="form-control"
                                         placeholder="パスワード(確認)"
-                                    />
+                                    ></base-input>
                                 </div>
                                 <base-button :loading="form.busy">
                                     ユーザー登録

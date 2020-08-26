@@ -15,15 +15,12 @@
                                     アカウント認証用メールを送信しました。
                                 </alert-success>
                                 <div class="md-form">
-                                    <input
-                                        type="text"
+                                    <base-input
+                                        :form="form"
+                                        field="email"
                                         v-model="form.email"
-                                        name="email"
-                                        class="form-control"
-                                        :class="{ 'is-invalid': form.errors.has('email') }"
                                         placeholder="メールアドレス"
-                                    />
-                                    <has-error :form="form" field="email"></has-error>
+                                    ></base-input>
                                 </div>
                                 <base-button :loading="form.busy">
                                     送信
