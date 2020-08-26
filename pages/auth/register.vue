@@ -64,16 +64,9 @@
                                         placeholder="パスワード(確認)"
                                     />
                                 </div>
-                                <button
-                                    type="submit"
-                                    :disabled="form.busy"
-                                    class="btn btn-block blue-gradient mt-2 mb-2"
-                                >
-                                    <span v-if="form.busy">
-                                        <i class="fas fa-spinner fa-spin"></i>
-                                    </span>
+                                <base-button :loading="form.busy">
                                     ユーザー登録
-                                </button>
+                                </base-button>
                             </form>
 
                             <div class="mt-0">
