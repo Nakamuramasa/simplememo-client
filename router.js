@@ -12,6 +12,8 @@ const routes = [
     { path: '/verification/resend', name: 'verification.resend', component: page('auth/verification/resend.vue') },
     { path: '/password/email', name: 'password.email', component: page('auth/password/reset-email.vue') },
     { path: '/password/reset/:token', name: 'password.reset', component: page('auth/password/password-reset.vue') },
+    { path: '/create', name: 'articles.create', component: page('user/articles/create.vue') },
+    { path: '/articles/:id/edit', name: 'articles.edit', component: page('user/articles/edit.vue') },
 ];
 
 export function createRouter(){
