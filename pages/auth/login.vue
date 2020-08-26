@@ -34,7 +34,8 @@
                                     />
                                     <has-error :form="form" field="password"></has-error>
                                 </div>
-                                <button
+                                <base-button></base-button>
+                                <!-- <button
                                     type="submit"
                                     :disabled="form.busy"
                                     class="btn btn-block blue-gradient mt-2 mb-2"
@@ -43,7 +44,7 @@
                                         <i class="fas fa-spinner fa-spin"></i>
                                     </span>
                                     ログイン
-                                </button>
+                                </button> -->
                             </form>
 
                             <div class="mt-0">
