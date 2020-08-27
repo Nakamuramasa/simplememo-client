@@ -18,7 +18,8 @@
     "nuxt": "^2.14.0",
     "sass-loader": "^9.0.3",
     "vform": "^1.0.1",
-    "vue-input-tag": "^2.0.7"
+    "vue-input-tag": "^2.0.7",
+    "vue-js-modal": "^2.0.0-rc.6"
   },
   "devDependencies": {
     "@nuxtjs/dotenv": "^1.4.1",

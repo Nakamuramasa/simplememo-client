@@ -23,7 +23,7 @@
                             <i class="fas fa-pen mr-1"></i>記事を更新する
                         </a>
                         <div class="dropdown-divider"></div>
-                        <a class="dropdown-item text-danger">
+                        <a @click.prevent="destroyArticle" class="dropdown-item text-danger">
                             <i class="fas fa-trash-alt mr-1"></i>記事を削除する
                         </a>
                     </div>
@@ -48,6 +48,13 @@ export default {
         article: {
             type: Object,
             required: true
+        }
+    },
+    methods: {
+        destroyArticle(){
+            this.$axios.delete(`/article/${this.article.id}`)
+            .then(res => this.$emit('deleted', this.article.id))
+            .catch(e => console.log(e))
         }
     }
 };

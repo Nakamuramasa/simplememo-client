@@ -41,7 +41,11 @@ export default {
   ** Plugins to load before mounting the App
   ** https://nuxtjs.org/guide/plugins
   */
-  plugins: ['~plugins/vform', '~components/_global', { src: '~plugins/vue-input-tag.js', mode: 'client' }],
+  plugins: [
+    '~plugins/vform',
+    '~components/_global',
+    { src: '~plugins/vue-input-tag.js', mode: 'client' }
+  ],
   /*
   ** Auto import components
   ** See https://nuxtjs.org/api/configuration-components
