@@ -56,7 +56,7 @@ export default {
     data(){
         return {
             form: this.$vform({
-                titel: '',
+                title: '',
                 tags: [],
                 body: ''
             })
