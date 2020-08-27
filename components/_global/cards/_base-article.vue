@@ -7,7 +7,7 @@
                     {{ article.user.username }}
                 </div>
                 <div class="font-weight-lighter">
-                    {{ article.created_at_dates.created_at_human }}
+                    {{ article.created_at_dates.created_at }}
                 </div>
             </div>
 
@@ -33,7 +33,9 @@
         </div>
         <div class="card-body pt-0 pb-2">
             <h3 class="h4 card-title">
-                {{ article.title }}
+                <a class="text-dark" :href="`/articles/${article.id}`">
+                    {{ article.title }}
+                </a>
             </h3>
             <div class="card-text">
                 {{ article.body }}

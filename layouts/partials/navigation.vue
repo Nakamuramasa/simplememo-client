@@ -23,9 +23,9 @@
                             マイページ
                         </button>
                         <div class="dropdown-divider"></div>
-                        <button form="logout-button" class="dropdown-item" type="button" @click.prevent="logout">
+                        <a form="logout-button" class="dropdown-item" @click.prevent="logout">
                             ログアウト
-                        </button>
+                        </a>
                     </div>
                 </li>
             </template>

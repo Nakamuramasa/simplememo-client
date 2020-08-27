@@ -14,6 +14,7 @@ const routes = [
     { path: '/password/reset/:token', name: 'password.reset', component: page('auth/password/password-reset.vue') },
     { path: '/create', name: 'articles.create', component: page('user/articles/create.vue') },
     { path: '/articles/:id/edit', name: 'articles.edit', component: page('user/articles/edit.vue') },
+    { path: '/articles/:id', name: 'articles.show', component: page('article/show.vue') },
 ];
 
 export function createRouter(){
