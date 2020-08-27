@@ -1,29 +1,28 @@
 <template>
     <div class="container">
-        <div class="card mt-3">
-            <div class="card-body d-flex flex-row">
-                <i class="fas fa-user-circle fa-3x mr-1"></i>
-                <div>
-                    <div class="font-weight-bold">
-                        ユーザー名
-                    </div>
-                    <div class="font-weight-lighter">
-                        2020/2/1 12:00
-                    </div>
-                </div>
-            </div>
-            <div class="card-body pt-0 pb-2">
-                <h3 class="h4 card-title">
-                    記事タイトル
-                </h3>
-                <div class="card-text">
-                    記事本文
-                </div>
-            </div>
-        </div>
+        <base-article
+            v-for="article in articles"
+            :key="article.id"
+            :article="article"
+        ></base-article>
     </div>
 </template>
 
 <script>
-export default {};
+export default {
+    data(){
+        return {
+            articles: []
+        }
+    },
+    created(){
+        this.fetchArticles();
+    },
+    methods:{
+        async fetchArticles(){
+            const {data} = await this.$axios.$get('/articles');
+            this.articles = data;
+        }
+    }
+};
 </script>
