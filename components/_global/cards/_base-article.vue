@@ -4,7 +4,9 @@
             <i class="fas fa-user-circle fa-3x mr-1"></i>
             <div>
                 <div class="font-weight-bold">
-                    {{ article.user.username }}
+                    <a class="text-dark" :href="`/user/${article.user.id}`">
+                        {{ article.user.username }}
+                    </a>
                 </div>
                 <div class="font-weight-lighter">
                     {{ article.created_at_dates.created_at }}

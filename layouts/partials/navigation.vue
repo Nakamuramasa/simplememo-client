@@ -19,13 +19,13 @@
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                        <button class="dropdown-item" type="button" onclick="location.href=''">
+                        <button class="dropdown-item" type="button">
                             マイページ
                         </button>
                         <div class="dropdown-divider"></div>
-                        <a form="logout-button" class="dropdown-item" @click.prevent="logout">
+                        <button form="logout-button" class="dropdown-item" @click.prevent="logout">
                             ログアウト
-                        </a>
+                        </button>
                     </div>
                 </li>
             </template>

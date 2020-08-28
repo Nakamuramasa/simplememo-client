@@ -15,6 +15,7 @@ const routes = [
     { path: '/create', name: 'articles.create', component: page('user/articles/create.vue') },
     { path: '/articles/:id/edit', name: 'articles.edit', component: page('user/articles/edit.vue') },
     { path: '/articles/:id', name: 'articles.show', component: page('article/show.vue') },
+    { path: '/user/:id', name: 'user.detail', component: page('user/detail.vue') }
 ];
 
 export function createRouter(){
