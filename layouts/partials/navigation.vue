@@ -19,9 +19,9 @@
                         <i class="fas fa-user-circle"></i>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right dropdown-primary" aria-labelledby="navbarDropdownMenuLink">
-                        <button class="dropdown-item" type="button">
+                        <a class="dropdown-item" :href="`/user/${$auth.user.id}`">
                             マイページ
-                        </button>
+                        </a>
                         <div class="dropdown-divider"></div>
                         <button form="logout-button" class="dropdown-item" @click.prevent="logout">
                             ログアウト
