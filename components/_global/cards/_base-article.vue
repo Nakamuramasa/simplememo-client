@@ -43,11 +43,22 @@
                 {{ article.body }}
             </div>
         </div>
+
+        <ArticleLike :article="article" />
+
+        <ArticleTag :article="article" />
+
     </div>
 </template>
 
 <script>
+import ArticleLike from '@/components/ArticleLike';
+import ArticleTag from '@/components/ArticleTag';
 export default {
+    components:{
+        ArticleLike,
+        ArticleTag
+    },
     props: {
         article: {
             type: Object,

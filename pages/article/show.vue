@@ -40,6 +40,31 @@
                     {{ article.body }}
                 </div>
             </div>
+            <div class="card-body pt-0 pb-2 pl-3">
+                <div class="card-text">
+                    <div>
+                        <button
+                            type="button"
+                            class="btn m-0 p-1 shadow-none"
+                        >
+                            <i class="fas fa-heart mr-1" />
+                        </button>
+                        {{ article.likes_count }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-body pt-0 pb-4 pl-3">
+                <div class="card-text line-height">
+                    <a
+                        class="border p-1 mr-1 mt-1 text-muted"
+                        v-for="(tag, i) in article.tag_list.tags"
+                        :key="`tag-${i}`"
+                        :href="`/tags/${article.tag_list.normalized[i]}`"
+                    >{{ tag }}</a>
+                </div>
+            </div>
+
         </div>
     </div>
 </template>
