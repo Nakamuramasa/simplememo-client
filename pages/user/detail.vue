@@ -41,28 +41,32 @@
                 </a>
             </li>
         </ul>
-        <div v-for="article in articles">
-            {{ article.title }}
-        </div>
+
+        <DetailArticle :user="user" />
+
     </div>
 </template>
 
 <script>
 import UserFollow from '@/components/UserFollow';
+import DetailArticle from '@/components/DetailArticle';
 export default {
     components: {
-        UserFollow
+        UserFollow,
+        DetailArticle
     },
-    async asyncData({ $axios, params, error, redirect }){
-        try{
-            const user = await $axios.$get(`/user/${params.id}`);
-            return { user: user.data, articles: user.data.articles };
-        }catch(err){
-            if(err.response.status === 404){
-                error({statusCode: 404, message: "ユーザーが見つかりませんでした。"})
-            }else{
-                error({statusCode: 500, message: "Internal server error"})
-            }
+    data(){
+        return {
+            user: []
+        }
+    },
+    created(){
+        this.userArticles();
+    },
+    methods:{
+        async userArticles(){
+            const {data} = await this.$axios.$get(`/user/${params.id}`);
+            this.user = data;
         }
     }
 };
