@@ -7,10 +7,10 @@
                         <i class="fas fa-user-circle fa-3x"></i>
                     </a>
 
-                    <follow-button
-                        class="ml-auto"
+                    <UserFollow
                         v-if="$auth.loggedIn"
-                    ></follow-button>
+                        :user="user"
+                    ></UserFollow>
                 </div>
                 <h2 class="h5 card-title m-0">
                     <a href="#" class="text-dark">
@@ -48,10 +48,10 @@
 </template>
 
 <script>
-import FollowButton from '@/components/FollowButton';
+import UserFollow from '@/components/UserFollow';
 export default {
     components: {
-        FollowButton
+        UserFollow
     },
     async asyncData({ $axios, params, error, redirect }){
         try{
